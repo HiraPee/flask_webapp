@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style type="text/css">
+      .result {color: red;}
+      </style>
+</head>
+<body>
+  min( <input type="number" id='a' maxlength="8" size="10"> ,  <input type="number" id='b' maxlength="8" size="10">) <button class="button" type="button" onclick="onClick();">=</button>
+
+  <script>
+    function onClick(){
+    const a = document.getElementById("a").value
+    const b = document.getElementById("b").value
+    if (a <= b) {
+      document.querySelector('.result').innerHTML = a ;
+
+    }
+    else {
+      document.querySelector('.result').innerHTML = b ;
+
+    }
+  }
+
+  </script>
+
+<span class="result"></span>
+</body>
+</html>

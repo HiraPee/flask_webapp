@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./base.css " rel="stylesheet"  >
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>hello</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#form').on('submit',function(event){
+          $.ajax({
+            data : {
+              text : $('#text_form').val(),
+            },
+            type : 'POST',
+            url : '/api'
+          })
+          .done(function(data){
+            //$('#output').text(data.output).show();
+            //console.log('これはまじ')
+            //console.log(data)
+            let img_element = document.createElement('img');
+            img_element.src = "data:image/png;base64,"+ data['img'];
+            var text1 = document.createElement("span");
+            text1.innerHTML = data['img'];
+            //let str = img_element.src
+            //let ret = str.replace("http://localhost:5000/", " ")
+            //console.log(img_element.src)
+            //img_element.src = './../images/spa.png';
+            //img_element.setAttribute('src', './../images/spa.png');
+            console.log(data['img'])
+            //console.log(ret)
+            //img_element.src = ret
+            //console.log(img_element.src)
+            var content_area = document.getElementById("result");
+            content_area.appendChild(text1);
+            content_area.appendChild(img_element);
+          });
+          event.preventDefault();
+        });
+      });
+    </script>
+</head>
+<body>
+ <form id = "form" method="POST">
+
+    <table class="tabel">
+        <div> Title
+            <input type="text" id='post_title' maxlength="8" size="10">
+        </div>
+            <div>本文
+            <input type="text" id="text_form" name = "test" required
+          maxlength="300" size="100">
+            </div>
+    </table>
+
+    <button type="submit" name="button">送信</button>
+
+    <!--<input type="submit" value="送信" onClick="post_func('http://localhost:5000/post/')">-->
+  </form>
+
+  <div id="result">
+    <tr>
+      <th>wordCloud</th>
+
+  </tr>
+  </div>
+
+</body>
+</html>

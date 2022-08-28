@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style type="text/css">
+      .result {color: red;}
+      </style>
+
+
+<script>
+  $(document).ready(function() {
+      $('#form_ex2').on('submit',function(event){
+        $.ajax({
+          data : {
+            a : $('#a').val(),
+            b : $('#b').val(),
+            c : $('#c').val(),
+            d : $('#d').val(),
+          },
+          type : 'POST',
+          url : '/ex2/max/'
+        })
+        .done(function(data){
+          if(data.waru2){
+            document.getElementById("result").innerHTML(data.result)
+            document.getElementById("result").style.color = "green"
+          }else{
+            document.getElementById("result").innerHTML(data.result)
+            document.getElementById("result").style.color = "yellow"
+          }
+
+        });
+        event.preventDefault();
+      });
+    });
+
+</script>
+</head>
+<body>
+  <form method="post" action="/ex2/max" id="form_ex2">
+  max( <input type="number" id='a' maxlength="3" size="5"> ,  <input type="number" id='b' maxlength="3" size="5">
+  ,<input type="number" id='c' maxlength="3" size="5">,<input type="number" id='d' maxlength="3" size="5">) <button type="submit" name="button" >=</button>
+  </form>
+
+
+<span class="result"></span>
+</body>
+</html>
